@@ -1,0 +1,105 @@
+<form nz-form [formGroup]="validateForm" >
+    <nz-form-item>    
+    <nz-form-label  nzRequired>Title</nz-form-label>
+          <nz-form-control [nzErrorTip]="titleErrorTpl">
+            <input nz-input type="text" formControlName="title" />
+            <ng-template #titleErrorTpl>
+              <ng-container *ngFor="let validation of validation_messages.title">
+                <ng-container  *ngIf="validateForm.get('title')?.hasError(validation.type) && validateForm.get('title')?.dirty ">
+                  {{validation.message}}
+                </ng-container>
+              </ng-container>
+            </ng-template>
+          </nz-form-control>
+      </nz-form-item>
+        <nz-form-item>    
+            <nz-form-label  nzRequired>Description</nz-form-label>
+                  <nz-form-control [nzErrorTip]="descriptionErrorTpl">
+                        <textarea [nzAutosize]="{ minRows: 3, maxRows: 5 }" formControlName="description" nz-input></textarea>
+                    <ng-template #descriptionErrorTpl>
+                      <ng-container *ngFor="let validation of validation_messages.description">
+                        <ng-container  *ngIf="validateForm.get('description')?.hasError(validation.type) && validateForm.get('description')?.dirty ">
+                          {{validation.message}}
+                        </ng-container>
+                      </ng-container>
+                  </ng-template>
+                  </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>    
+                <nz-form-label  nzRequired>Product Stock</nz-form-label>
+                      <nz-form-control >
+                          <nz-radio-group formControlName="in_stock"  nzName="radiogroup">
+                            <label nz-radio nzValue=true>In Stock</label>
+                            <label nz-radio nzValue=false>Out of Stock</label>
+                          </nz-radio-group>
+                      </nz-form-control>
+                  </nz-form-item>
+                <nz-form-item>    
+                    <nz-form-label>Product Rating</nz-form-label>
+                          <nz-form-control >
+                            <nz-rate formControlName="rating" nzAllowHalf></nz-rate>
+                          </nz-form-control>
+                      </nz-form-item>
+                      <nz-form-item>
+                          <nz-form-label nzRequired>Product Price</nz-form-label>
+                          <nz-form-control [nzErrorTip]="priceErrorTpl">
+                          <input nz-input type="text" formControlName="price" />
+                          <ng-template #priceErrorTpl>
+                            <ng-container *ngFor="let validation of validation_messages.price">
+                              <ng-container  *ngIf="validateForm.get('price')?.hasError(validation.type) && validateForm.get('price')?.dirty ">
+                                {{validation.message}}
+                              </ng-container>
+                            </ng-container>
+                          </ng-template> 
+                          </nz-form-control>
+                      </nz-form-item>
+                      <nz-form-item>
+                        <nz-form-label nzRequired>Product Image</nz-form-label>
+                        <nz-form-control [nzErrorTip]="imageErrorTpl">
+                            <input 
+                            nz-input
+                            formControlName="image"
+                            id="file" 
+                            type="file"
+                            accept="image/*" 
+                            (change)="onFileChange($event)">
+                        <!-- <input nz-input type="text" formControlName="price" /> -->
+                        <ng-template #imageErrorTpl>
+                          <ng-container *ngFor="let validation of validation_messages.image">
+                            <ng-container  *ngIf="validateForm.get('image')?.hasError(validation.type) && validateForm.get('image')?.dirty ">
+                              {{validation.message}}
+                            </ng-container>
+                          </ng-container>
+                        </ng-template> 
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>    
+                        <nz-form-label  nzRequired>Product Category</nz-form-label>
+                              <nz-form-control [nzErrorTip]="categoryErrorTpl">
+                                <nz-select
+                                nzPlaceHolder="Select product category"
+                                formControlName="category"
+                              >
+                                <nz-option nzValue="shoes" nzLabel="Shoes"></nz-option>
+                                <nz-option nzValue="sneakers" nzLabel="Sneakers"></nz-option>
+                              </nz-select>
+                              <ng-template #categoryErrorTpl>
+                                <ng-container *ngFor="let validation of validation_messages.category">
+                                  <ng-container  *ngIf="validateForm.get('category')?.hasError(validation.type) && validateForm.get('category')?.dirty ">
+                                    {{validation.message}}
+                                  </ng-container>
+                                </ng-container>
+                              </ng-template>
+                              
+                            </nz-form-control>
+                          </nz-form-item>
+                    <nz-form-item>
+                    
+        <nz-form-control [nzOffset]="7" >
+          <button nz-button nzType="primary"
+          type="submit" [nzLoading]="isLoadingOne" (click)="submitForm()">Submit</button>
+          <button nz-button (click)="resetForm()">Reset</button>
+        </nz-form-control>
+      </nz-form-item>
+
+    </form>

@@ -1,0 +1,27 @@
+<div style="background: #ececec; padding:0 24px;height: calc(100vh - 130px);
+        overflow: auto;
+        margin-right: -48px !important;">
+<ng-container *ngIf="isLoading">
+    <nz-spin nzSimple ></nz-spin>
+</ng-container> 
+
+            <div nz-row [nzGutter]="8">
+                <ng-container *ngIf="products.length>0; else noTemplate">
+                    <div nz-col [nzSpan]="8" *ngFor="let product of products" (click)="navigate(product.id)">
+                      <ng-container *ngIf="product.remove">
+                        <app-custom-image
+                        [productInfo]="product"
+                        (deleteProduct)="showConfirm($event)"
+                        (restoreProduct)="showRestoreConfirm($event)"
+                        [remove] = true
+                        [restore] = true
+                      ></app-custom-image>
+                      </ng-container>  
+                      
+                      </div>
+                </ng-container>
+                <ng-template #noTemplate>
+                    <label>No data found.</label>
+                  </ng-template>
+            </div>
+          </div>

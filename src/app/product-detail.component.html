@@ -1,0 +1,18 @@
+
+<div style="display: flex;">
+    <img
+      nz-image
+      width="200px"
+      height="200px"
+      [nzSrc]="productDetail.image"
+      alt=""
+    />
+    <nz-descriptions nzTitle="Product Info">
+        <nz-descriptions-item nzTitle="Title">{{productDetail.name}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Description">{{productDetail.description}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Rating">
+            <nz-rate [ngModel]="productDetail.rating" nzDisabled></nz-rate>
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Price">{{productDetail.price}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="In Stock">{{productDetail.in_stock ? 'Yes' : 'No'}}</nz-descriptions-item>
+      </nz-descriptions></div>

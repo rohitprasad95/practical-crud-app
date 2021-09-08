@@ -1,0 +1,57 @@
+<nz-layout class="app-layout" >
+    <nz-sider class="menu-sidebar"
+              nzCollapsible
+              nzWidth="100px"
+              nzBreakpoint="md"
+              [(nzCollapsed)]="isCollapsed"
+              [nzTrigger]="null">
+      
+      <ul nz-menu nzTheme="dark" nzMode="inline">
+            <li nz-menu-item routerLink="/list" nzMatchRouter>
+              <i nz-icon nzType="dashboard"></i>
+              <span>Home</span>
+            </li>
+            <li nz-menu-item routerLink="/delete" nzMatchRouter>
+              <i nz-icon nzType="delete"></i>
+              <span>Trash</span>
+            </li>
+      </ul>
+    </nz-sider>
+    <nz-layout class="main-layout">
+      <nz-header>
+        <div class="app-header">
+          <nz-row nzJustify="space-between">
+              <nz-col>
+                <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+                  <i class="trigger"
+                     nz-icon
+                     [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+                  ></i>
+              </span>
+              </nz-col>
+                <!-- <nz-col>
+                <nz-input-group [nzSuffix]="suffixIconSearch">
+                  <input type="text" nz-input placeholder="Search products" />
+                </nz-input-group>
+                <ng-template #suffixIconSearch>
+                  <i nz-icon nzType="search"></i>
+                </ng-template>
+              </nz-col> -->
+
+          </nz-row>
+  
+        </div>
+      </nz-header>
+      <nz-content>
+        <!-- <app-custom-breadcrumb></app-custom-breadcrumb> -->
+        <nz-page-header (nzBack)="onBack()" nzBackIcon [nzTitle]="pageTitle" style="padding:12px 16px;">
+          <nz-page-header-content>
+              <div style="background: #fff; min-height: 200px;">
+                  <router-outlet></router-outlet>
+              </div>
+          </nz-page-header-content>
+        </nz-page-header>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+  

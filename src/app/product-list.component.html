@@ -1,0 +1,96 @@
+
+<nz-row>
+    <nz-col nzSpan="6">
+      <div class="search-container" style="position: fixed;
+      right: 15px;
+      top: 11px;
+      z-index: 10;">
+        <nz-input-group [nzSuffix]="suffixIconSearch" >
+            <input type="text"  #searchInput nz-input placeholder="Search products" />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <i nz-icon nzType="search"></i>
+          </ng-template>
+        </div>
+          <form nz-form [formGroup]="filterForm">
+            <nz-form-item>    
+                <nz-form-label>IN Stock</nz-form-label>
+                      <nz-form-control>
+                        <nz-radio-group formControlName="in_stock" nzName="radiogroup">
+                            <label nz-radio nzValue=true>In Stock</label>
+                            <label nz-radio nzValue=false>Out of Stock</label>
+                          </nz-radio-group>
+                      </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>    
+                    <nz-form-label>Price Range</nz-form-label>
+                          <nz-form-control>
+                            <nz-slider nzRange [nzStep]="100" 
+                            formControlName="price"
+                            [nzMax]="5000" 
+                            >
+                        </nz-slider> 
+                          </nz-form-control>
+                      </nz-form-item>
+                      <nz-form-item>    
+                        <nz-form-label>Rating</nz-form-label>
+                              <nz-form-control>
+                                <nz-rate formControlName="rating" nzAllowHalf></nz-rate>
+                              </nz-form-control>
+                          </nz-form-item>
+                          <nz-form-item>    
+                            <nz-form-label>CATEgory</nz-form-label>
+                                  <nz-form-control>
+                                    
+                <nz-select
+                nzPlaceHolder="Select product category"
+                formControlName="category"
+              >
+                <nz-option nzValue="shoes" nzLabel="Shoes"></nz-option>
+                <nz-option nzValue="sneakers" nzLabel="Sneakers"></nz-option>
+              </nz-select>
+                                  </nz-form-control>
+                              </nz-form-item>
+                      <nz-form-item>
+                      <nz-form-control [nzOffset]="7" >
+                        <button nz-button nzType="primary"
+                        type="submit" (click)="getFilteredData()">Apply</button>
+                        <button nz-button (click)="resetForm()">Reset</button>
+                      </nz-form-control>
+                    </nz-form-item>
+          </form>
+    </nz-col>
+    <nz-col nzSpan="18">
+        <div style="background: #ececec; padding:0 24px;height: calc(100vh - 130px);
+        overflow: auto;
+        margin-right: -48px !important;">
+        <ng-container *ngIf="isLoading">
+            <nz-spin nzSimple ></nz-spin>
+        </ng-container> 
+        
+            <div nz-row [nzGutter]="8">
+                <ng-container *ngIf="products.length > 0 else noTemplate">
+                    <div nz-col [nzSpan]="8" *ngFor="let product of products" (click)="navigate(product.id)">
+                      <ng-container *ngIf="!product.remove">
+                        <app-custom-image
+                        [productInfo]="product"
+                        [remove] = true
+                        [edit] = true
+                        [like] = true
+                        (deleteProduct)="showConfirm($event)"
+                      ></app-custom-image>
+                      </ng-container>  
+                      </div>
+                </ng-container>
+                <ng-template #noTemplate>
+                  <label>No data found.</label>
+                </ng-template>
+           
+            </div>
+          </div>
+    </nz-col>
+</nz-row>
+  <button nz-button nzType="primary"  nzShape="circle" style="position: fixed; bottom: 50px; right: 20px;"
+  [routerLink]="['/add']">
+    <i nz-icon nzType="plus"></i>
+  </button>

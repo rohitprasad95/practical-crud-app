@@ -1,0 +1,59 @@
+
+:host {
+    display: flex;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .ant-card .ant-card-cover{
+    height: 200px;
+    img{
+        width: 100%;
+        height: 100%;
+    }
+}
+  
+.app-layout {
+    height: 100vh;
+  }
+  
+  .menu-sidebar {
+    overflow: auto;
+    height: 100vh;
+     position: fixed;
+      left: 0;
+       top:64px;
+       z-index:10;
+       box-shadow: 2px 0 6px rgba(0,21,41,.35);
+
+  }
+  
+  .header-trigger {
+    height: 64px;
+    padding: 20px 24px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all .3s,padding 0s;
+  }
+  
+  .trigger:hover {
+    color: #1890ff;
+  }
+
+ 
+  nz-header {
+    height:54px;background: #fff;color:#1890ff;box-shadow: 0 1px 4px rgba(0,21,41,.08);
+      position:fixed;z-index:10;
+    padding: 0;
+    left: 0;
+    width: 100%;
+  }
+  .main-layout {
+    margin-left: 100px;
+  }
+  
+  nz-content {
+    padding:0 16px;margin: 54px 24px 54px 0;
+  }
+  
+  
