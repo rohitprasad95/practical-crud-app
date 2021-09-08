@@ -1,0 +1,24 @@
+{
+  "products": [
+    {
+      "name": "dfnsdkfl",
+      "description": "dfsdf",
+      "rating": 2.5,
+      "price": "33",
+      "in_stock": "true",
+      "category": "shoes",
+      "image": "product2.jfif",
+      "id": 1
+    },
+    {
+      "name": "sdf",
+      "description": "vnsdfn",
+      "rating": 3,
+      "price": "3",
+      "in_stock": "false",
+      "category": "sneakers",
+      "image": {},
+      "id": 2
+    }
+  ]
+}
